@@ -200,44 +200,44 @@ function animate() {
     requestAnimationFrame(animate);
 }
 //鼠标滑动效果，未提高性能，暂时关闭
-//window.onmousemove = function(e){
-//	mouseMoving = true;
-//	mouseX = e.clientX;
-//	mouseY = e.clientY;
-//	clearInterval(mouseMoveChecker);
-//	mouseMoveChecker = setTimeout(function() {
-//		mouseMoving = false;
-//	}, 100);
-//}
-//
-//
-//function drawIfMouseMoving(){
-//	if (!mouseMoving) return;
-//
-//	if (dots.length == 0) {
-//		dots[0] = new Dot(0, mouseX, mouseY);
-//		dots[0].draw();
-//		return;
-//	}
-//
-//	var previousDot = getPreviousDot(dots.length, 1);
-//	var prevX = previousDot.x;
-//	var prevY = previousDot.y;
-//
-//	var diffX = Math.abs(prevX - mouseX);
-//	var diffY = Math.abs(prevY - mouseY);
-//
-//	if (diffX < dotsMinDist || diffY < dotsMinDist) return;
-//
-//	var xVariation = Math.random() > .5 ? -1 : 1;
-//	xVariation = xVariation*Math.floor(Math.random()*maxDistFromCursor)+1;
-//	var yVariation = Math.random() > .5 ? -1 : 1;
-//	yVariation = yVariation*Math.floor(Math.random()*maxDistFromCursor)+1;
-//	dots[dots.length] = new Dot(dots.length, mouseX+xVariation, mouseY+yVariation);
-//	dots[dots.length-1].draw();
-//	dots[dots.length-1].link();
-//}
-//setInterval(drawIfMouseMoving, 17);
+window.onmousemove = function(e){
+	mouseMoving = true;
+	mouseX = e.clientX;
+	mouseY = e.clientY;
+	clearInterval(mouseMoveChecker);
+	mouseMoveChecker = setTimeout(function() {
+		mouseMoving = false;
+	}, 100);
+}
+
+
+function drawIfMouseMoving(){
+	if (!mouseMoving) return;
+
+	if (dots.length == 0) {
+		dots[0] = new Dot(0, mouseX, mouseY);
+		dots[0].draw();
+		return;
+	}
+
+	var previousDot = getPreviousDot(dots.length, 1);
+	var prevX = previousDot.x;
+	var prevY = previousDot.y;
+
+	var diffX = Math.abs(prevX - mouseX);
+	var diffY = Math.abs(prevY - mouseY);
+
+	if (diffX < dotsMinDist || diffY < dotsMinDist) return;
+
+	var xVariation = Math.random() > .5 ? -1 : 1;
+	xVariation = xVariation*Math.floor(Math.random()*maxDistFromCursor)+1;
+	var yVariation = Math.random() > .5 ? -1 : 1;
+	yVariation = yVariation*Math.floor(Math.random()*maxDistFromCursor)+1;
+	dots[dots.length] = new Dot(dots.length, mouseX+xVariation, mouseY+yVariation);
+	dots[dots.length-1].draw();
+	dots[dots.length-1].link();
+}
+setInterval(drawIfMouseMoving, 17);
 
 function degToRad(deg) {
 	return deg * (Math.PI / 180);
